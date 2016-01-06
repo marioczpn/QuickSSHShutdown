@@ -22,7 +22,8 @@ public class SSHManager {
 	 * @return boolean (Success=true/Fail=false)
 	 */
 	public boolean shutdown() {
-		boolean isExecCmd = sendCommands(Constants.SHUTDOWN_CMD);
+		String sudoShutdown = Constants.SUDO_CMD.concat(Constants.SHUTDOWN_CMD);
+		boolean isExecCmd = sendCommands(sudoShutdown);
 		return isExecCmd;
 	}
 
@@ -35,7 +36,8 @@ public class SSHManager {
 	 * @return boolean (Success=true/Fail=false)
 	 */
 	public boolean reboot() {
-		boolean isExecCmd = sendCommands(Constants.REBOOT_CMD);
+		String sudoReboot = Constants.SUDO_CMD.concat(Constants.REBOOT_CMD);
+		boolean isExecCmd = sendCommands(sudoReboot);
 		return isExecCmd;
 	}
 
@@ -49,7 +51,7 @@ public class SSHManager {
 	 * @return boolean (Success=true/Fail=false)
 	 */
 	public boolean sendCommands(String command) {
-
+		boolean isExecCmd = false;
 		if (command == null || "".equalsIgnoreCase(command)) {
 			return false;
 		}
@@ -57,7 +59,7 @@ public class SSHManager {
 		SSHClient sshMan = new SSHClient();
 		List<String> commands = new ArrayList<String>();
 		commands.add(command);
-		boolean isExecCmd = sshMan.executeCommands(commands);
+		isExecCmd = sshMan.executeCommands(commands);
 		if(isExecCmd) {
 			isExecCmd = sshMan.close();	
 		}

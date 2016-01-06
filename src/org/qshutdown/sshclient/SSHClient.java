@@ -252,7 +252,7 @@ public class SSHClient {
 	 */
 	public boolean close() {
 		boolean isClosed = false;
-		if (channel != null && channel.isConnected() && session.isConnected()) {
+		if (channel != null && session != null) {
 			channel.disconnect();
 			session.disconnect();
 			isClosed = true;

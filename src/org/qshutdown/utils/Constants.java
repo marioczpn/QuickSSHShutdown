@@ -13,7 +13,7 @@ package org.qshutdown.utils;
 public class Constants {
 
 	public static final String SUDO_CMD = "sudo -S -p '' ";
-	public static final String SHUTDOWN_CMD = "shutdown -h now";
-	public static final String REBOOT_CMD = "reboot";
+	public static final String SHUTDOWN_CMD = "/sbin/shutdown -h now";
+	public static final String REBOOT_CMD = "/sbin/reboot";
 
 }
